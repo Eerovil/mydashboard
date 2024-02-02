@@ -5,27 +5,29 @@
     <body>
         <div id="main">
             <iframe
-                id="frame1"
                 src="https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja/details#content"
                 width="400px"
                 height="900px"
                 frameborder="0"
+                loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
             ></iframe>
 
             <iframe
-            src="https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja#inline-banner-mobi-1"
+                src="https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja#inline-banner-mobi-1"
                 width="600px"
                 height="900px"
                 frameborder="0"
+                loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
             ></iframe>
 
             <iframe
-            src="https://www.sahkoa.io/"
+                src="https://www.sahkoa.io/"
                 width="400px"
                 height="900px"
                 frameborder="0"
+                loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
             ></iframe>
 
@@ -56,6 +58,19 @@
             }
             reload_time.innerHTML = Math.floor((reloadTime - new Date()) / 1000) + 's';
         }, 1000);
+
+        let index = 0;
+        for (const iframe of document.querySelectorAll('iframe')) {
+            const src = iframe.src;
+            iframe.src = '';
+            const currIndex = index;
+            setTimeout(() => {
+                console.log('loading', currIndex);
+                iframe.src = src;
+            }, currIndex * 2000);
+            index++;
+        }
+
     </script>
     <style>
         #main {
