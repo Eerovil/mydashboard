@@ -1,9 +1,50 @@
 <html>
     <head>
-        <title>My First Web Page</title>
+        <title>Dashbboard</title>
     </head>
     <body>
-        <h1>Welcome to my first web page!</h1>
-        <p>This is a paragraph of text that will appear on the page.</p>
+        <div id="main">
+            <iframe
+                id="frame1"
+                src="https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja/details#dayhdr"
+                width="400px"
+                height="800px"
+                frameborder="0"
+                noresize=yes frameborder=0 marginheight=0 marginwidth=0
+            ></iframe>
+
+            <iframe
+            src="https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja#inline-banner-mobi-1"
+                width="600px"
+                height="800px"
+                frameborder="0"
+                noresize=yes frameborder=0 marginheight=0 marginwidth=0
+            ></iframe>
+
+            <iframe
+            src="http://www.sahko.tk/"
+                width="400px"
+                height="800px"
+                frameborder="0"
+                noresize=yes frameborder=0 marginheight=0 marginwidth=0
+            ></iframe>
+
+            <div style="display: flex; flex-direction: column;">
+            <span id="current_date"></span>
+            <span id="current_time"></span>
+            </div>
+        </div>
     </body>
+    <script>
+        var current_time = document.getElementById('current_time');
+        var date = new Date();
+        current_time.innerHTML = date.toLocaleTimeString('fi-FI');
+        var current_date = document.getElementById('current_date');
+        current_date.innerHTML = date.toLocaleDateString('fi-FI');
+    </script>
+    <style>
+        #main {
+            display: flex;
+        }
+    </style>
 </html>
