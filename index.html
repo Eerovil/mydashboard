@@ -29,9 +29,10 @@
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
             ></iframe>
 
-            <div style="display: flex; flex-direction: column;">
+            <div id="info">
             <span id="current_date"></span>
             <span id="current_time"></span>
+            <span id="reload_time"></span>
             </div>
         </div>
     </body>
@@ -41,10 +42,38 @@
         current_time.innerHTML = date.toLocaleTimeString('fi-FI');
         var current_date = document.getElementById('current_date');
         current_date.innerHTML = date.toLocaleDateString('fi-FI');
+        var reload_time = document.getElementById('reload_time');
+
+        var info = document.getElementById('info');
+        info.addEventListener('click', function() {
+            window.location.reload();
+        });
+        const reloadTime = new Date();
+        reloadTime.setTime(reloadTime.getTime() + 1000 * 60 * 5);
+        setInterval(function() {
+            if (new Date() > reloadTime) {
+                window.location.reload();
+            }
+            reload_time.innerHTML = Math.floor((reloadTime - new Date()) / 1000) + 's';
+        }, 1000);
     </script>
     <style>
         #main {
             display: flex;
+        }
+        #info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 60px;
+            background-color: #f0f0f0;
+
+            z-index: 9999;
         }
     </style>
 </html>
