@@ -51,25 +51,13 @@
             window.location.reload();
         });
         const reloadTime = new Date();
-        reloadTime.setTime(reloadTime.getTime() + 1000 * 60 * 5);
+        reloadTime.setTime(reloadTime.getTime() + 1000 * 60 * 30);
         setInterval(function() {
             if (new Date() > reloadTime) {
                 window.location.reload();
             }
             reload_time.innerHTML = Math.floor((reloadTime - new Date()) / 1000) + 's';
         }, 1000);
-
-        let index = 0;
-        for (const iframe of document.querySelectorAll('iframe')) {
-            const src = iframe.src;
-            iframe.src = '';
-            const currIndex = index;
-            setTimeout(() => {
-                console.log('loading', currIndex);
-                iframe.src = src;
-            }, currIndex * 2000);
-            index++;
-        }
 
     </script>
     <style>
