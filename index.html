@@ -51,7 +51,18 @@
             window.location.reload();
         });
         const reloadTime = new Date();
-        reloadTime.setTime(reloadTime.getTime() + 1000 * 60 * 30);
+        reloadTime.setMinutes(reloadTime.getMinutes() + 1);
+        // Fin next time when it's XX.01 or XX.31
+        reloadTime.setSeconds(0);
+        reloadTime.setMilliseconds(0);
+        if (reloadTime.getMinutes() < 30) {
+            reloadTime.setMinutes(30);
+        } else {
+            reloadTime.setHours(reloadTime.getHours() + 1);
+            reloadTime.setMinutes(0);
+        }
+        reloadTime.setMinutes(reloadTime.getMinutes() + 1);
+        console.log(reloadTime);
         setInterval(function() {
             if (new Date() > reloadTime) {
                 window.location.reload();
