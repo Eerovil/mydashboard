@@ -5,7 +5,7 @@
     <body>
         <div id="main">
             <iframe
-                src="https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja/details#content"
+                src="https://forecaurl/details#content"
                 width="400px"
                 height="900px"
                 frameborder="0"
@@ -14,7 +14,7 @@
             ></iframe>
 
             <iframe
-                src="https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja#inline-banner-mobi-1"
+                src="https://forecaurl#inline-banner-mobi-1"
                 width="600px"
                 height="900px"
                 frameborder="0"
@@ -37,8 +37,32 @@
             <span id="reload_time"></span>
             </div>
         </div>
+
+        <a href="/">Reset foreca</a>
     </body>
     <script>
+        // Get from query param
+        var forecaURL = new URLSearchParams(window.location.search).get('forecaURL');
+        if (!forecaURL) {
+            forecaURL = prompt('Foreca URL?', 'https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja');
+            window.location.search = `forecaURL=${forecaURL}`;
+        }
+        if (forecaURL.includes('details')) {
+            forecaURL = forecaURL.split('details')[0];
+        }
+        if (forecaURL.includes('https://')) {
+            forecaURL = forecaURL.split('https://')[1];
+        }
+
+        for (const frame of document.querySelectorAll('iframe')) {
+            if (frame.src.includes('forecaurl')) {
+                frame.src = frame.src.replace('forecaurl', forecaURL);
+                console.log(frame.src);
+            } else {
+                console.log('No forecaurl in ', frame.src);
+            }
+        }
+
         var current_time = document.getElementById('current_time');
         var date = new Date();
         current_time.innerHTML = date.toLocaleTimeString('fi-FI');
