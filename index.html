@@ -35,10 +35,10 @@
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
             ></iframe>
 
-            <div id="info">
-            <span id="current_date"></span>
-            <span id="current_time"></span>
-            <span id="reload_time"></span>
+            <div id="info" class="prevent-select">
+                <span id="current_date"></span>
+                <span id="current_time"></span>
+                <span id="reload_time"></span>
             </div>
         </div>
 
@@ -112,10 +112,15 @@
             top: 0;
             right: 0;
             width: 100px;
-            height: 60px;
+            height: 70px;
             background-color: #f0f0f0;
 
             z-index: 9999;
+        }
+        .prevent-select {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
         }
     </style>
 </html>
