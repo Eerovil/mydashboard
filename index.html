@@ -44,7 +44,7 @@
         // Get from query param
         var forecaURL = new URLSearchParams(window.location.search).get('forecaURL');
         if (!forecaURL) {
-            forecaURL = prompt('Foreca URL?', 'https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja');
+            forecaURL = prompt('Anna Foreca linkki', 'https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja');
             window.location.search = `forecaURL=${forecaURL}`;
         }
         if (forecaURL.includes('details')) {
