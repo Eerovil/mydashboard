@@ -9,21 +9,23 @@
     <body>
         <div id="main">
             <iframe
-                src="https://forecaurl/details#content"
+                id="foreca1"
                 width="400px"
                 height="900px"
                 frameborder="0"
                 loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
+                style="width: 400px; height: 900px;"
             ></iframe>
 
             <iframe
-                src="https://forecaurl#inline-banner-mobi-1"
+                id="foreca2"
                 width="600px"
                 height="900px"
                 frameborder="0"
                 loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
+                style="width: 600px; height: 900px;"
             ></iframe>
 
             <iframe
@@ -33,6 +35,7 @@
                 frameborder="0"
                 loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
+                style="width: 400px; height: 900px;"
             ></iframe>
 
             <div id="info" class="prevent-select">
@@ -45,6 +48,7 @@
         <a href="/mydashboard/">Reset foreca</a>
     </body>
     <script>
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         // Get from query param
         var forecaURL = new URLSearchParams(window.location.search).get('forecaURL');
         if (!forecaURL) {
@@ -58,12 +62,19 @@
             forecaURL = forecaURL.split('https://')[1];
         }
 
-        for (const frame of document.querySelectorAll('iframe')) {
-            if (frame.src.includes('forecaurl')) {
-                frame.src = frame.src.replace('forecaurl', forecaURL);
-                console.log(frame.src);
-            } else {
-                console.log('No forecaurl in ', frame.src);
+        var foreca1 = document.getElementById('foreca1');
+        foreca1.src = "https://" + forecaURL + "/details#content";
+
+        var foreca2 = document.getElementById('foreca2');
+        foreca2.src = "https://" + forecaURL + "#inline-banner-mobi-1";
+
+        if (isSafari) {
+            // Reload safari iframes
+            try {
+                document.querySelector('#foreca1').reload();
+                document.querySelector('#foreca2').reload();
+            } catch (e) {
+                console.error('Failed to reload safari iframes', e);
             }
         }
 
