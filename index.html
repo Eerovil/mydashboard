@@ -15,18 +15,18 @@
                 frameborder="0"
                 loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
-                style="width: 400px; height: 900px;"
+                style="width: 400px; height: 1000px; position:relative; z-index: 1; top: -100px;"
             ></iframe>
 
             <div class="middle-wrap">
             <iframe
                 id="foreca2"
-                width="600px"
+                width="900px"
                 height="900px"
                 frameborder="0"
                 loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
-                style="width: 600px; height: 500px;"
+                style="width: 900px; height: 450px; margin-left: -165px; position: relative; z-index: -1;"
             ></iframe>
 
             <iframe
@@ -48,7 +48,7 @@
                 frameborder="0"
                 loading="lazy"
                 noresize=yes frameborder=0 marginheight=0 marginwidth=0
-                style="width: 400px; height: 900px; position: fixed; right: 0;"
+                style="width: 300px; height: 900px; position: fixed; right: 0; top: -100px;"
             ></iframe>
 
             <div id="info" class="prevent-select">
@@ -79,7 +79,7 @@
         foreca1.src = "https://" + forecaURL + "/details#content";
 
         var foreca2 = document.getElementById('foreca2');
-        foreca2.src = "https://" + forecaURL + "#content";
+        foreca2.src = "https://" + forecaURL + "#innercontent";
 
         if (isSafari) {
             // Reload safari iframes
@@ -127,6 +127,10 @@
         #main {
             display: flex;
         }
+        body {
+            margin: 0;
+            padding: 0;
+        }
         #info {
             display: flex;
             flex-direction: column;
@@ -137,9 +141,10 @@
             left: 0;
             width: 100px;
             height: 70px;
-            background-color: #f0f0f0;
+            background-color: rgba(255, 255, 255, 0.5);
 
             z-index: 9999;
+;
         }
         .prevent-select {
             -webkit-user-select: none; /* Safari */
