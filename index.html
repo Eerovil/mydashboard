@@ -66,7 +66,6 @@
         var forecaURL = new URLSearchParams(window.location.search).get('forecaURL');
         if (!forecaURL) {
             forecaURL = prompt('Anna Foreca linkki', 'https://www.foreca.fi/Finland/Kontiolahti/Kylmaoja');
-            window.location.search = `forecaURL=${forecaURL}`;
         }
         if (forecaURL.includes('details')) {
             forecaURL = forecaURL.split('details')[0];
@@ -93,14 +92,14 @@
 
         var marginalPrice = new URLSearchParams(window.location.search).get('marginalPrice');
         if (!marginalPrice) {
-            marginalPrice = prompt('Anna sähkön marginaali', '0.05');
-            window.location.search += `&marginalPrice=${marginalPrice}`;
+            marginalPrice = prompt('Anna sähkön marginaali', '0.6');
         }
         var deliveryPrice = new URLSearchParams(window.location.search).get('deliveryPrice');
         if (!deliveryPrice) {
-            deliveryPrice = prompt('Anna sähkön siirtohinta', '6');
-            window.location.search += `&deliveryPrice=${deliveryPrice}`;
+            deliveryPrice = prompt('Anna sähkön siirtohinta', '8.05');
+            window.location.search = `forecaURL=${forecaURL}&marginalPrice=${marginalPrice}&deliveryPrice=${deliveryPrice}`;
         }
+        
         var sahko = document.getElementById('sahko');
         sahko.src = `https://eerovil.github.io/sahkon-hinta/?marginal=${marginalPrice}&delivery=${deliveryPrice}`;
 
